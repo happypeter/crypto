@@ -1,0 +1,405 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>RSA 算法--基本原理篇 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="9-math.html" />
+    
+    
+    <link rel="prev" href="7-ca.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="1-punk.html">
+            
+                <a href="1-punk.html">
+            
+                    
+                    密码朋克运动
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="2-crypto.html">
+            
+                <a href="2-crypto.html">
+            
+                    
+                    什么是密码学
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="3-hash.html">
+            
+                <a href="3-hash.html">
+            
+                    
+                    哈希算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="4-pub.html">
+            
+                <a href="4-pub.html">
+            
+                    
+                    公开密钥加密
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="5-com.html">
+            
+                <a href="5-com.html">
+            
+                    
+                    加密通信
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="6-sign.html">
+            
+                <a href="6-sign.html">
+            
+                    
+                    数字签名
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="7-ca.html">
+            
+                <a href="7-ca.html">
+            
+                    
+                    数字证书
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.9" data-path="8-idea.html">
+            
+                <a href="8-idea.html">
+            
+                    
+                    RSA 算法--基本原理篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="9-math.html">
+            
+                <a href="9-math.html">
+            
+                    
+                    RSA 算法--粗略数学推导篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="10-merk.html">
+            
+                <a href="10-merk.html">
+            
+                    
+                    Merkle Tree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="11-ecc.html">
+            
+                <a href="11-ecc.html">
+            
+                    
+                    椭圆曲线密码学简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >RSA 算法--基本原理篇</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p>&#x54B1;&#x4EEC;&#x6BCF;&#x5929;&#x8BF4;&#x975E;&#x5BF9;&#x79F0;&#x52A0;&#x5BC6;&#xFF0C;&#x8BF4;&#x516C;&#x94A5;&#x79C1;&#x94A5;&#xFF0C;&#x4F46;&#x662F;&#x516C;&#x94A5;&#x548C;&#x79C1;&#x94A5;&#x5230;&#x5E95;&#x662F;&#x600E;&#x4E48;&#x4EA7;&#x751F;&#x7684;&#xFF0C;&#x52A0;&#x5BC6;&#x548C;&#x89E3;&#x5BC6;&#x8FC7;&#x7A0B;&#x5230;&#x5E95;&#x662F;&#x600E;&#x4E48;&#x6837;&#x7684;&#xFF0C;&#x4E0D;&#x770B;&#x770B;&#x5177;&#x4F53;&#x7B97;&#x6CD5;&#x5B9E;&#x73B0;&#x8FD8;&#x771F;&#x662F;&#x611F;&#x89C9;&#x5FC3;&#x91CC;&#x6CA1;&#x5E95;&#x3002;RSA &#x7B97;&#x6CD5;&#x662F;&#x975E;&#x5BF9;&#x79F0;&#x52A0;&#x5BC6;&#x7B97;&#x6CD5;&#x9F3B;&#x7956;&#xFF0C;&#x81F3;&#x4ECA;&#x4ECD;&#x7136;&#x662F;&#x6700;&#x4E3A;&#x5E7F;&#x6CDB;&#x4F7F;&#x7528;&#x7684;&#x7B97;&#x6CD5;&#x4E4B;&#x4E00;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5C31;&#x6765;&#x62C6;&#x89E3;&#x4E00;&#x4E0B; RSA &#x7B97;&#x6CD5;&#x672C;&#x8EAB;&#x3002; </p>
+<h2 id="&#x5B8F;&#x89C2;&#x601D;&#x8DEF;">&#x5B8F;&#x89C2;&#x601D;&#x8DEF;</h2>
+<p>&#x5B66;&#x4E1C;&#x897F;&#x6700;&#x6015;&#x7684;&#x5C31;&#x662F;&#x6CA1;&#x6709;&#x5927;&#x601D;&#x8DEF;&#xFF0C;&#x76F4;&#x63A5;&#x6DF1;&#x5165;&#x7EC6;&#x8282;&#x3002;&#x6240;&#x4EE5;&#x5F00;&#x59CB;&#x4E4B;&#x524D;&#xFF0C;&#x6211;&#x4EEC;&#x5148;&#x5B8F;&#x89C2;&#x4E0A;&#x8BA8;&#x8BBA;&#x4E00;&#x4E0B; RSA &#x7B97;&#x6CD5;&#x5230;&#x5E95;&#x662F;&#x7528;&#x6765;&#x5E72;&#x561B;&#x7684;&#xFF1F;&#x603B;&#x4F53;&#x7684;&#x5B9E;&#x73B0;&#x601D;&#x8DEF;&#x53C8;&#x662F;&#x600E;&#x6837;&#x7684;&#x5462;&#xFF1F; </p>
+<p>&#x8BF4;&#x5230;&#x6700;&#x5E95;&#x5C42;&#xFF0C;RSA &#x7B97;&#x6CD5;&#x7684;&#x4F5C;&#x7528;&#x975E;&#x5E38;&#x7B80;&#x5355;&#xFF0C;&#x5C31;&#x662F;&#x751F;&#x6210;&#x516C;&#x94A5;&#x548C;&#x79C1;&#x94A5;&#x7684;&#x3002;&#x516C;&#x94A5;&#x7528;&#x4E8E;&#x52A0;&#x5BC6;&#x4FE1;&#x606F;&#xFF0C;&#x79C1;&#x94A5;&#x7528;&#x6765;&#x89E3;&#x5BC6;&#xFF0C;&#x5148;&#x4E0A;&#x9501;&#xFF0C;&#x540E;&#x5F00;&#x9501;&#x3002;Alice &#x81EA;&#x5DF1;&#x5148;&#x4E70;&#x4E00;&#x628A;&#x9501;&#xFF0C;&#x7136;&#x540E;&#x628A;&#x9501;&#x5934;&#x53D1;&#x9001;&#x7ED9; Bob &#xFF0C;&#x6CE8;&#x610F; Bob &#x7ED9;&#x4FE1;&#x606F;&#x4E0A;&#x9501;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x80AF;&#x5B9A;&#x662F;&#x4E0D;&#x9700;&#x8981;&#x94A5;&#x5319;&#x7684;&#xFF0C;&#x4E0A;&#x4E86;&#x9501;&#x7684;&#x4FE1;&#x606F;&#x53D1;&#x9001;&#x7ED9; Alice &#x4E4B;&#x540E;&#xFF0C;Alice &#x5C31;&#x53EF;&#x4EE5;&#x7528;&#x94A5;&#x5319;&#x6253;&#x5F00;&#x9501;&#xFF0C;&#x62FF;&#x5230;&#x4FE1;&#x606F;&#x3002;&#x9501;&#x548C;&#x5F00;&#x9501;&#x660E;&#x663E;&#x662F;&#x4E24;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x6CA1;&#x6709;&#x5FC5;&#x8981;&#x8BA9;&#x94A5;&#x5319;&#x53C2;&#x4E0E;&#x5230;&#x4E0A;&#x9501;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x8FD9;&#x4E2A;&#x5C31;&#x662F;&#x975E;&#x5BF9;&#x79F0;&#x52A0;&#x5BC6;&#x7684;&#x7684;&#x601D;&#x60F3;&#x6E90;&#x5934;&#x4E86;&#x3002;&#x4E0A;&#x9501;&#x7684;&#x65F6;&#x5019;&#xFF0C;Bob &#x53EA;&#x9700;&#x8981;&#x516C;&#x94A5;&#xFF0C;&#x800C; Alice &#x5F00;&#x9501;&#x7684;&#x65F6;&#x5019;&#x624D;&#x9700;&#x8981;&#x79C1;&#x94A5;&#x3002;&#x6240;&#x4EE5;&#x516C;&#x94A5;&#x5C31;&#x662F;&#x52A0;&#x5BC6; key &#xFF0C;&#x79C1;&#x94A5;&#x5C31;&#x662F;&#x89E3;&#x5BC6; key &#x3002;&#x5B9E;&#x73B0;&#x52A0;&#x5BC6;&#x548C;&#x89E3;&#x5BC6;&#x7684;&#x7B2C;&#x4E00;&#x6B65;&#x5C31;&#x662F;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x51FD;&#x6570;&#x7684;&#x6B63;&#x5411;&#x8FD0;&#x7B97;&#x5F88;&#x5BB9;&#x6613;&#xFF0C;&#x4F46;&#x662F;&#x9006;&#x5411;&#x8FD0;&#x7B97;&#x5F88;&#x96BE;&#x3002;&#x5BF9;&#x5E94; RSA &#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x628A;&#x516C;&#x94A5;&#x548C;&#x4FE1;&#x606F;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x8FD0;&#x7B97;&#xFF0C;&#x5F97;&#x5230;&#x5BC6;&#x6587;&#xFF0C;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x8981;&#x5F88;&#x5BB9;&#x6613;&#xFF0C;&#x800C;&#x9006;&#x5411;&#x8FD0;&#x7B97;&#xFF0C;&#x7531;&#x5BC6;&#x6587;&#x548C;&#x516C;&#x94A5;&#x60F3;&#x8981;&#x83B7;&#x5F97;&#x4FE1;&#x606F;&#xFF0C;&#x662F;&#x5F88;&#x96BE;&#x505A;&#x5230;&#x7684;&#x3002;</p>
+<p><img src="https://img.haoqicat.com/2018100401.jpg" alt=""></p>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x8FD8;&#x5FC5;&#x987B;&#x6709;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x7279;&#x70B9;&#x3002;&#x5C31;&#x662F;&#x9006;&#x5411;&#x64CD;&#x4F5C;&#x867D;&#x7136;&#x9ED8;&#x8BA4;&#x5F88;&#x96BE;&#x505A;&#x5230;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x5982;&#x679C;&#x62E5;&#x6709;&#x4E86;&#x7279;&#x5B9A;&#x7684;&#x63D0;&#x793A;&#x4FE1;&#x606F;&#xFF0C;&#x64CD;&#x4F5C;&#x5C31;&#x53D8;&#x5F97;&#x975E;&#x5E38;&#x5BB9;&#x6613;&#x4E86;&#x3002;&#x8FD9;&#x91CC;&#x7684;&#x63D0;&#x793A;&#x4FE1;&#x606F;&#xFF0C;&#x663E;&#x7136;&#x5C31;&#x662F;&#x79C1;&#x94A5;&#x3002;</p>
+<p>&#x603B;&#x4E4B;&#xFF0C;&#x627E;&#x5230;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x6B63;&#x5411;&#x5BB9;&#x6613;&#x8FD0;&#x7B97;&#xFF0C;&#x53CD;&#x5411;&#x9ED8;&#x8BA4;&#x5F88;&#x96BE;&#xFF0C;&#x4F46;&#x662F;&#x5982;&#x679C;&#x6709;&#x4E86;&#x79C1;&#x94A5;&#x5C31;&#x5F88;&#x5BB9;&#x6613;&#x8FD0;&#x7B97;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x5C31;&#x662F;&#x5B9E;&#x73B0; RSA &#x7B97;&#x6CD5;&#x7684;&#x6838;&#x5FC3;&#x601D;&#x8DEF;&#x3002;</p>
+<h2 id="&#x5177;&#x4F53;&#x5B9E;&#x73B0;">&#x5177;&#x4F53;&#x5B9E;&#x73B0;</h2>
+<p>&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x5C31;&#x6765;&#x770B;&#x770B; RSA &#x7B97;&#x6CD5;&#x5177;&#x4F53;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>&#x5148;&#x6765;&#x8865;&#x5145;&#x4E00;&#x4E2A;&#x6570;&#x5B66;&#x77E5;&#x8BC6;&#xFF1A;&#x53D6;&#x6A21;&#x8FD0;&#x7B97;&#x3002;&#x53D6;&#x6A21;&#x8FD0;&#x7B97;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x7B97;&#x4F59;&#x6570;&#x3002;&#x4F8B;&#x5982; 3 mod 2 &#x7684;&#x7ED3;&#x679C;&#x5C31;&#x662F;1&#xFF0C;mod &#x5C31;&#x662F;&#x53D6;&#x6A21;&#x7684;&#x610F;&#x601D;&#x3002;</p>
+<p><img src="https://img.haoqicat.com/2018100402.jpg" alt=""></p>
+<p>RSA &#x4F7F;&#x7528;&#x7684;&#x5355;&#x5411;&#x51FD;&#x6570;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF0C;&#x62FF;&#x51FA;&#x8981;&#x52A0;&#x5BC6;&#x7684;&#x4FE1;&#x606F; m &#xFF0C;&#x6211;&#x4EEC;&#x77E5;&#x9053;&#x4EFB;&#x4F55;&#x7684;&#x8BA1;&#x7B97;&#x673A;&#x4FE1;&#x606F;&#x90FD;&#x80FD;&#x8F6C;&#x6362;&#x6210;&#x4E8C;&#x8FDB;&#x5236;&#x6570;&#xFF0C;&#x6240;&#x4EE5;&#x5F53;&#x7136;&#x4E5F;&#x80FD;&#x8F6C;&#x6362;&#x6210;&#x5341;&#x8FDB;&#x5236;&#x7684;&#x4E00;&#x4E2A;&#x6574;&#x6570;&#x3002;&#x8FD9;&#x91CC; m &#x662F;&#x4E00;&#x4E2A;&#x6574;&#x6570;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x968F;&#x673A;&#x9009;&#x62E9;&#x4E00;&#x4E2A; e &#xFF0C;&#x6765;&#x4F5C;&#x4E3A; m &#x7684;&#x6307;&#x6570;&#x3002;&#x6CE8;&#x610F;&#xFF0C;&#x8FD9;&#x91CC;&#x7684;&#x6307;&#x6570; e &#x7684;&#x9009;&#x62E9;&#x8303;&#x56F4;&#x662F;&#x6709;&#x4E00;&#x5B9A;&#x9650;&#x5236;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x5728;&#x8FD9;&#x4E2A;&#x8303;&#x56F4;&#x5185;&#x662F;&#x4EFB;&#x610F;&#x9009;&#x62E9;&#x7684;&#x3002;&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x8FDB;&#x884C; m &#x7684; e &#x6B21;&#x65B9;&#x8FD0;&#x7B97;&#xFF0C;&#x7136;&#x540E;&#x5BF9;&#x53E6;&#x4E00;&#x4E2A;&#x968F;&#x673A;&#x9009;&#x53D6;&#x6574;&#x6570; N &#x8FDB;&#x884C;&#x53D6;&#x6A21;&#x8FD0;&#x7B97;&#xFF0C;&#x6700;&#x540E;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x5C31;&#x662F;&#x5BC6;&#x6587;&#xFF0C;&#x7528; c &#x8868;&#x793A; &#x3002;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;m &#x7B49;&#x4E8E;7 &#xFF0C;e &#x9009;&#x62E9;&#x4E3A;2 &#xFF0C;N &#x9009;&#x62E9;23&#xFF0C;&#x8FD9;&#x6837;&#xFF0C;&#x6700;&#x540E;&#x7684;&#x5BC6;&#x6587; c &#x5C31;&#x7B49;&#x4E8E;49&#x5BF9;23&#x53D6;&#x6A21;&#xFF0C;&#x7ED3;&#x679C;&#x662F;6&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;7&#x7ECF;&#x8FC7;&#x52A0;&#x5BC6;&#xFF0C;&#x6700;&#x540E;&#x5BC6;&#x6587;&#x662F;6&#x3002;&#x8FD9;&#x4E2A;&#x8FD0;&#x7B97;&#x6709;&#x4E2A;&#x7279;&#x70B9;&#xFF0C;&#x7ED9;&#x5B9A; m &#x548C; e &#x4EE5;&#x53CA; N &#x7684;&#x503C;&#xFF0C;&#x5F88;&#x5BB9;&#x6613;&#x7B97;&#x51FA; c &#xFF0C;&#x4F46;&#x662F;&#x7ED9;&#x5B9A; c &#x548C; e &#x4EE5;&#x53CA; N &#x5F88;&#x96BE;&#x7B97;&#x51FA; m &#x6765;&#x3002;&#x8FD9;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x7684;&#x5355;&#x5411;&#x51FD;&#x6570;&#x3002;</p>
+<p><img src="https://img.haoqicat.com/2018100403.jpg" alt=""></p>
+<p>&#x4E8E;&#x662F;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x9501;&#x5C31;&#x6709;&#x4E86;&#xFF0C;&#x4E5F;&#x5C31;&#x662F; &#x201D;e &#x6B21;&#x65B9;&#x7136;&#x540E;&#x5BF9; N &#x53D6;&#x6A21;&#x201C;&#x3002;&#x90A3;&#x4E48;&#xFF0C;&#x5F00;&#x8FD9;&#x628A;&#x9501;&#x7684;&#x94A5;&#x5319;&#x662F;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;&#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF0C;&#x5C31;&#x662F;&#x8BA9;&#x9006;&#x5411;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#x53D8;&#x5F97;&#x7B80;&#x5355;&#x7684;&#x4FE1;&#x606F;&#x3002;</p>
+<p><img src="https://img.haoqicat.com/2018100404.jpg" alt=""></p>
+<p>&#x9006;&#x5411;&#x8FD0;&#x7B97;&#xFF0C;&#x5C31;&#x662F;&#x4ECE;&#x5BC6;&#x6587;&#x5F97;&#x5230;&#x4FE1;&#x606F;&#x3002;&#x7ECF;&#x8FC7;&#x6570;&#x5B66;&#x63A8;&#x5BFC;&#xFF0C;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x8FD9;&#x6837;&#x7684;&#x9006;&#x5411;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#xFF0C;&#x4E00;&#x5B9A;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x6574;&#x6570; d &#xFF0C;&#x4F7F;&#x5F97; c &#x7684; d &#x6B21;&#x65B9;&#x5BF9; N &#x53D6;&#x6A21;&#xFF0C;&#x662F;&#x53EF;&#x4EE5;&#x5F97;&#x5230; m &#x7684;&#x3002;&#x6700;&#x7EC8;&#xFF0C;e &#x548C; N &#x6309;&#x7167;&#x4E00;&#x5B9A;&#x89C4;&#x8303;&#x7EC4;&#x5408;&#x5230;&#x4E00;&#x8D77;&#xFF0C;&#x5C31;&#x662F;&#x516C;&#x94A5;&#xFF0C;&#x800C; d &#x548C; N &#x7EC4;&#x5408;&#x5230;&#x4E00;&#x8D77;&#x5C31;&#x662F;&#x79C1;&#x94A5;&#x3002;</p>
+<p>&#x603B;&#x4E4B;&#xFF0C;RSA &#x7B97;&#x6CD5;&#x7684;&#x5355;&#x5411;&#x51FD;&#x6570;&#x627E;&#x5230;&#x4E86;&#xFF0C;&#x4E8E;&#x662F;&#x52A0;&#x5BC6;&#x7528;&#x7684;&#x9501;&#x4E5F;&#x5C31;&#x627E;&#x5230;&#x4E86;&#x3002;&#x4F46;&#x662F;&#x5176;&#x5B9E;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x672C;&#x8EAB;&#x4E0D;&#x662F; RSA &#x7B97;&#x6CD5;&#x6700;&#x590D;&#x6742;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x6700;&#x590D;&#x6742;&#x7684;&#x5185;&#x5BB9;&#x5728;&#x4E8E;&#x5982;&#x4F55;&#x7531; e &#x7B97;&#x51FA; d &#x3002;&#x800C;&#x5982;&#x4F55;&#x7ED9;&#x5B9A; e &#xFF0C;&#x7B97;&#x51FA;&#x5408;&#x9002;&#x7684; d &#xFF0C;&#x5176;&#x5B9E;&#x662F;&#x8981;&#x5F15;&#x5165;&#x7B2C;&#x4E8C;&#x4E2A;&#x5355;&#x5411;&#x8FD0;&#x7B97;&#x4E86;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x6574;&#x6570;&#x5206;&#x89E3;&#x95EE;&#x9898;&#x4E86;&#x3002;</p>
+<h2 id="&#x5B89;&#x5168;&#x6027;&#x53D6;&#x51B3;&#x4E0E;&#x6574;&#x6570;&#x5206;&#x89E3;&#x95EE;&#x9898;">&#x5B89;&#x5168;&#x6027;&#x53D6;&#x51B3;&#x4E0E;&#x6574;&#x6570;&#x5206;&#x89E3;&#x95EE;&#x9898;</h2>
+<p>&#x5982;&#x4F55;&#x8FD0;&#x7B97;&#x51FA; d &#x7684;&#x8FC7;&#x7A0B;&#x672C;&#x8282;&#x4E0D;&#x5C55;&#x5F00;&#x3002;&#x7C97;&#x7565;&#x6765;&#x8BB2;&#xFF0C;&#x4ECE; e &#x8FD0;&#x7B97;&#x51FA; d &#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x6D89;&#x53CA;&#x5230; N &#x7684;&#x6574;&#x6570;&#x5206;&#x89E3;&#x95EE;&#x9898;&#x3002;&#x6574;&#x4E2A; RSA &#x7B97;&#x6CD5;&#x7684;&#x5B89;&#x5168;&#x6027;&#x5C31;&#x53D6;&#x51B3;&#x4E8E;&#x6574;&#x6570;&#x5206;&#x89E3;&#x8FD9;&#x4E2A;&#x57FA;&#x672C;&#x6570;&#x5B66;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x6765;&#x89E3;&#x91CA;&#x4E00;&#x4E0B;&#x6574;&#x6570;&#x5206;&#x89E3;&#x95EE;&#x9898;&#x3002;&#x6574;&#x6570;&#x5206;&#x89E3;&#x5C31;&#x662F;&#x628A;&#x4E00;&#x4E2A;&#x6570;&#x5206;&#x89E3;&#x6210;&#x591A;&#x4E2A;&#x7D20;&#x6570;&#x7684;&#x4E58;&#x79EF;&#x3002;&#x7D20;&#x6570;&#x5C31;&#x662F;&#x90A3;&#x4E9B;&#x53EA;&#x80FD;&#x88AB;1&#x548C;&#x81EA;&#x5DF1;&#x6574;&#x9664;&#x7684;&#x6574;&#x6570;&#xFF0C;&#x8FD9;&#x4E2A;&#x5C0F;&#x65F6;&#x5019;&#x54B1;&#x4EEC;&#x5B66;&#x8FC7;&#x7684;&#x3002;&#x4F8B;&#x5982; 45 &#x53EF;&#x4EE5;&#x5206;&#x89E3;&#x6210; 3x3x5 &#x3002;&#x800C; RSA &#x7B97;&#x6CD5;&#x4E2D;&#x7684;&#x6574;&#x6570;&#x5206;&#x89E3;&#x6709;&#x4E00;&#x5B9A;&#x7684;&#x7279;&#x6B8A;&#x6027;&#x3002;&#x88AB;&#x5206;&#x89E3;&#x7684;&#x6570;&#x9700;&#x8981;&#x662F;&#x4E24;&#x4E2A;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x591A;&#x4E2A;&#x7D20;&#x6570;&#x7684;&#x4E58;&#x79EF;&#x3002;&#x867D;&#x7136;&#x7531;&#x4E24;&#x4E2A;&#x7D20;&#x6570;&#x76F8;&#x4E58;&#x83B7;&#x5F97;&#x7ED3;&#x679C;&#x975E;&#x5E38;&#x7B80;&#x5355;&#xFF0C;&#x4F46;&#x662F;&#x53CD;&#x8FC7;&#x6765;&#xFF0C;&#x5206;&#x89E3;&#x8FC7;&#x7A0B;&#x662F;&#x5F88;&#x96BE;&#x7684;&#x3002;&#x5F88;&#x96BE;&#x7684;&#x610F;&#x601D;&#x5C31;&#x662F;&#x5982;&#x679C;&#x6570;&#x8DB3;&#x591F;&#x5927;&#xFF0C;&#x5373;&#x4F7F;&#x7528;&#x8BA1;&#x7B97;&#x673A;&#x4E5F;&#x9700;&#x8981;&#x6210;&#x5343;&#x4E0A;&#x4E07;&#x5E74;&#x624D;&#x80FD;&#x7B97;&#x51FA;&#x6765;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x6216;&#x8005;&#x53EF;&#x4EE5;&#x8BF4;&#x201C;&#x5F88;&#x96BE;&#x201D;&#x5C31;&#x7B49;&#x4E8E;&#x201D;&#x5B9E;&#x9645;&#x4E2D;&#x4E0D;&#x80FD;&#x5B9E;&#x73B0;&#x201C;&#x3002;&#x800C;&#x8FD9;&#x4E00;&#x70B9;&#x5C31;&#x662F; RSA &#x7B97;&#x6CD5;&#x7684;&#x5B89;&#x5168;&#x57FA;&#x77F3;&#x3002;&#x5982;&#x679C;&#x6709;&#x4E00;&#x5929;&#xFF0C;&#x6709;&#x6570;&#x5B66;&#x5BB6;&#x627E;&#x51FA;&#x6574;&#x6570;&#x5206;&#x89E3;&#x7684;&#x6709;&#x6548;&#x8FD0;&#x7B97;&#x65B9;&#x6CD5;&#xFF0C;&#x90A3;&#x4E48; RSA &#x7B97;&#x6CD5;&#x4E5F;&#x5C31;&#x4E0D;&#x80FD;&#x7528;&#x4E86;&#x3002;</p>
+<p>&#x5B9E;&#x9645;&#x751F;&#x6210;&#x516C;&#x94A5;&#x548C;&#x79C1;&#x94A5;&#x7684;&#x8FC7;&#x7A0B;&#x662F;&#xFF0C;&#x6211;&#x4EEC;&#x9009;&#x51FA; p1 &#x548C; p2 &#x4E24;&#x4E2A;&#x5927;&#x7D20;&#x6570;&#xFF0C;&#x8BA9; N = p1 * p2 &#x3002;&#x968F;&#x673A;&#x9009;&#x62E9;&#x4E00;&#x4E2A;&#x6307;&#x6570; e &#xFF0C;&#x8FD9;&#x6837;&#x516C;&#x94A5;&#x5C31;&#x6709;&#x4E86;&#x3002;&#x800C;&#x5728;&#x77E5;&#x9053; p1 &#x548C; p2 &#x7684;&#x524D;&#x63D0;&#x4E0B;&#xFF0C;&#x4ECE;&#x516C;&#x94A5;&#x7B97;&#x51FA;&#x79C1;&#x94A5;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x7B97;&#x51FA; d &#xFF0C;&#x662F;&#x975E;&#x5E38;&#x5BB9;&#x6613;&#x7684;&#x3002;&#x800C;&#x5916;&#x4EBA;&#xFF0C;&#x56E0;&#x4E3A;&#x4E0D;&#x77E5;&#x9053; p1 &#x548C; p2 &#xFF0C;&#x800C;&#x53EA;&#x77E5;&#x9053; N &#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x53EF;&#x80FD;&#x4ECE; e &#x7B97;&#x51FA; d &#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x4E0D;&#x53EF;&#x80FD;&#x7528;&#x516C;&#x94A5;&#x7B97;&#x51FA;&#x79C1;&#x94A5;&#x3002;</p>
+<p>&#x603B;&#x4E4B;&#x53EA;&#x8981;&#x6574;&#x6570;&#x5206;&#x89E3;&#x95EE;&#x9898;&#x65E0;&#x89E3;&#xFF0C;&#x90A3;&#x4E48; RSA &#x5C31;&#x662F;&#x5B89;&#x5168;&#x7684;&#x3002;</p>
+<h2 id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</h2>
+<p>&#x8FD9;&#x5C31;&#x662F; RSA &#x7B97;&#x6CD5;&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x4E86;&#x3002;&#x5B8F;&#x89C2;&#x4E0A;&#x7684;&#x601D;&#x8DEF;&#x5C31;&#x662F;&#xFF0C;&#x8981;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x5305;&#x542B;&#x53D6;&#x6A21;&#x8FD0;&#x7B97;&#x7684;&#x5355;&#x5411;&#x51FD;&#x6570;&#xFF0C;&#x4FDD;&#x8BC1;&#x4FE1;&#x606F;&#x52A0;&#x5BC6;&#x5BB9;&#x6613;&#xFF0C;&#x800C;&#x53CD;&#x5411;&#x89E3;&#x5BC6;&#x5F88;&#x96BE;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x8FD8;&#x8981;&#x627E;&#x5230;&#x7B2C;&#x4E8C;&#x4E2A;&#x5355;&#x5411;&#x51FD;&#x6570;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6574;&#x6570;&#x5206;&#x89E3;&#x95EE;&#x9898;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x4FDD;&#x8BC1;&#x5728;&#x77E5;&#x9053;&#x5206;&#x89E3;&#x7ED3;&#x679C;&#x7684;&#x6761;&#x4EF6;&#x4E0B;&#xFF0C;&#x4ECE;&#x516C;&#x94A5;&#x7B97;&#x51FA;&#x79C1;&#x94A5;&#x662F;&#x5BB9;&#x6613;&#x7684;&#xFF0C;&#x800C;&#x5982;&#x679C;&#x4E0D;&#x77E5;&#x9053;&#xFF0C;&#x5C31;&#x4E0D;&#x53EF;&#x80FD;&#x7B97;&#x51FA;&#x79C1;&#x94A5;&#x3002;&#x771F;&#x6B63;&#x7684; RSA &#x7B97;&#x6CD5;&#xFF0C;&#x662F;&#x8FD9;&#x4E24;&#x4E2A;&#x5355;&#x5411;&#x51FD;&#x6570;&#x7684;&#x7EFC;&#x5408;&#x4F7F;&#x7528;&#x3002;&#x4F46;&#x662F;&#x5BF9;&#x4E8E;&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x89E3;&#x5BC6;&#xFF0C;&#x516C;&#x94A5;&#x548C;&#x79C1;&#x94A5;&#x751F;&#x6210;&#x7684;&#x7EC6;&#x8282;&#xFF0C;&#x6211;&#x4EEC;&#x6CA1;&#x6709;&#x5C55;&#x5F00;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x6D89;&#x53CA;&#x5230;&#x66F4;&#x591A;&#x7684;&#x6570;&#x5B66;&#x63A8;&#x5BFC;&#xFF0C;&#x4E0B;&#x4E2A;&#x5C0F;&#x8282; Peter &#x518D;&#x7ED9;&#x5927;&#x5BB6;&#x4ECB;&#x7ECD;&#x3002;</p>
+<p>&#x53C2;&#x8003;&#xFF1A;</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem" target="_blank">https://en.wikipedia.org/wiki/RSA_(cryptosystem</a>)</li>
+<li><a href="https://www.youtube.com/watch?v=wXB-V_Keiu8" target="_blank">https://www.youtube.com/watch?v=wXB-V_Keiu8</a></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="7-ca.html" class="navigation navigation-prev " aria-label="Previous page: 数字证书">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="9-math.html" class="navigation navigation-next " aria-label="Next page: RSA 算法--粗略数学推导篇">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"RSA 算法--基本原理篇","level":"1.9","depth":1,"next":{"title":"RSA 算法--粗略数学推导篇","level":"1.10","depth":1,"path":"9-math.md","ref":"9-math.md","articles":[]},"previous":{"title":"数字证书","level":"1.8","depth":1,"path":"7-ca.md","ref":"7-ca.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"8-idea.md","mtime":"2019-07-30T23:37:08.639Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-07-30T23:38:07.793Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
