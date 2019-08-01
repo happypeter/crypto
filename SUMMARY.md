@@ -13,3 +13,7 @@
 * [椭圆曲线密码学简介](11-ecc.md)
 * [一次性密码本](otp.md)
 * [凯撒密码](caesar.md)
+* [对称加密算法之王 AES](aes.md)
+* [自由的加密工具 GPG](gpg.md)
+* [Diffie–Hellman 密钥交换](dh.md)
+* [密码学圣战](crypto-war.md)
